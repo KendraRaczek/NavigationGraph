@@ -1,0 +1,29 @@
+- not started
+o working
++ done
+
+
+1. NavigationGraph
+  - Constructor
+  - GraphADT methods
+    - addVertex(V vertex)
+    - addEdge(V src, V dest, E edge)
+    - getVertices()
+    - getEdgeIfExists(V src, V dest)
+    - getOutEdges(V src)
+    - getNeighbors(V vertex)
+    - getShortestRoute(V src, V dest, String edgePropertyName)
+    - getEdgePropertyNames()
+    - toString()
+  - getLocationByName(String name)
+  
+  - Error Handling
+    - IllegalArgumentException
+    - OTHERS
+  
+2. MapApp
+  - createNavigationGraphFromMapFile(String graphFilepath)
+  
+  - Error Handling
+    - FileNotFoundException
+    - InvalidFileException
