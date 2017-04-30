@@ -16,9 +16,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		this.numVertices = 0;
 		this.propName = edgePropertyNames;
 	}
-	
-	
-	
+
 	public void addVertex(Location vertex) 
 	{
 		GraphNode<Location, Path> nodeToAdd = new GraphNode<Location, Path>(vertex, id);
@@ -29,7 +27,6 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 
 	public void addEdge(Location src, Location dest, Path edge)
 	{
-		
 		// search through Graph's list
 		GraphNode<Location, Path> srcNode = null;
 		GraphNode<Location, Path> destNode = null;
@@ -83,13 +80,13 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		return null;
 	}
 	
-	
 	public List<Path> getOutEdges(Location src) 
 	{
-		
 		GraphNode<Location, Path> srcNode = null;
-		for (GraphNode<Location, Path> node : nodes) {
-			if ( node.getVertexData().equals(src)) {
+		for (GraphNode<Location, Path> node : nodes) 
+		{
+			if ( node.getVertexData().equals(src)) 
+			{
 				srcNode = node;
 			}
 		}
@@ -115,9 +112,24 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	{
 		return numVertices;
 	}
+	
 	public String toString() 
 	{
-		
+		String graphString = "";
+		for (GraphNode<Location, Path> node : nodes)
+		{
+			for (Path edge : node.getOutEdges())
+			{
+				graphString += node.getVertexData() + " ";
+				for ( Double property : edge.getProperties()) 
+				{
+					graphString += property + " ";
+				}
+				graphString += edge.getDestination() + ", ";
+			}
+		}
+		graphString = graphString.toLowerCase();
+		return graphString;
 	}
 	
 	/**
