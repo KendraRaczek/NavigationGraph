@@ -16,7 +16,9 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		this.numVertices = 0;
 		this.propName = edgePropertyNames;
 	}
-
+	
+	
+	
 	public void addVertex(Location vertex) 
 	{
 		GraphNode<Location, Path> nodeToAdd = new GraphNode<Location, Path>(vertex, id);
@@ -27,6 +29,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 
 	public void addEdge(Location src, Location dest, Path edge)
 	{
+		
 		// search through Graph's list
 		GraphNode<Location, Path> srcNode = null;
 		GraphNode<Location, Path> destNode = null;
@@ -46,14 +49,14 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	public List<Location> getVertices() 
 	{
-		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<Location> list = new ArrayList<Location>();
 		boolean t = true;
 		for (GraphNode<Location, Path> node : nodes) {
 			t = true;
-			for (String s : list)
-				if (s.equals(node.getVertexData().getname()))
+			for (Location n : list)
+				if (n == node.getVertexData())
 					t = false;
-			if (t) list.add(node.getVertexData().getname())
+			if (t) list.add(node.getVertexData());
 		}
 		return list;
 	}
@@ -80,13 +83,13 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		return null;
 	}
 	
+	
 	public List<Path> getOutEdges(Location src) 
 	{
+		
 		GraphNode<Location, Path> srcNode = null;
-		for (GraphNode<Location, Path> node : nodes) 
-		{
-			if ( node.getVertexData().equals(src)) 
-			{
+		for (GraphNode<Location, Path> node : nodes) {
+			if ( node.getVertexData().equals(src)) {
 				srcNode = node;
 			}
 		}
@@ -96,7 +99,24 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	}
 	
 	public List<Location> getNeighbors(Location vertex) {
-
+//		  int numVertices = getNumVertices();
+//		  if (numV <= v) 
+//		  {
+//			  throw new IndexOutOfBoundsException();
+//		  }
+//		  else
+//		  {
+//			  List<Integer> neighbors = new ArrayList<Integer>();
+//			  for (int x : adjListsMap.get(vertex)) 
+//			  {
+//				  neighbors.add(x);
+//			  }
+//		  }
+//		  
+//		    }
+//		    
+//		    return neighbors;
+//		
 	}
 	
 	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName) {
@@ -112,24 +132,9 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	{
 		return numVertices;
 	}
-	
 	public String toString() 
 	{
-		String graphString = "";
-		for (GraphNode<Location, Path> node : nodes)
-		{
-			for (Path edge : node.getOutEdges())
-			{
-				graphString += node.getVertexData() + " ";
-				for ( Double property : edge.getProperties()) 
-				{
-					graphString += property + " ";
-				}
-				graphString += edge.getDestination() + ", ";
-			}
-		}
-		graphString = graphString.toLowerCase();
-		return graphString;
+		
 	}
 	
 	/**
