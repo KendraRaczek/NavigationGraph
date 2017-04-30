@@ -100,12 +100,12 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	public String[] getEdgePropertyNames()
 	{
-		
+		return propName;	
 	}
 	
 	public int getNumVertices() 
 	{
-		
+		return size;
 	}
 	public String toString() 
 	{
