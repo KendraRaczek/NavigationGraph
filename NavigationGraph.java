@@ -9,31 +9,31 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	
 	
-	public void addVertex(V vertex) {
+	public void addVertex(Location vertex) {
 		
 	}
 
-	public void addEdge(V src, V dest, E edge) {
+	public void addEdge(Location src, Location dest, Path edge) {
 		
 	}
 	
-	public List<V> getVertices() {
+	public List<Location> getVertices() {
 		
 	}
 	
-	public E getEdgeIfExists(V src, V dest) {
+	public Path getEdgeIfExists(Location src, Location dest) {
 		
 	}
 	
-	public List<E> getOutEdges(V src) {
+	public List<Path> getOutEdges(Location src) {
 		
 	}
 	
-	public List<V> getNeighbors(V vertex) {
+	public List<Location> getNeighbors(Location vertex) {
 		
 	}
 	
-	public List<E> getShortestRoute(V src, V dest, String edgePropertyName) {
+	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName) {
 		
 	}
 	
