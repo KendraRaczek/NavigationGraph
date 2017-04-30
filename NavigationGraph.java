@@ -160,7 +160,10 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	 * @return Location object
 	 */
 	public Location getLocationByName(String name) {
-		return null; //TODO: implement correctly. 
+		for (GraphNode<Location, Path> node : nodes)
+			if (node.getVertexData().getName().equals(name))
+				return node.getVertexData();
+		return null;
 	}
 
 }
