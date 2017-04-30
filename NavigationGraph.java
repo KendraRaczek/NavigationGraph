@@ -132,9 +132,24 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	{
 		return numVertices;
 	}
+	
 	public String toString() 
 	{
-		
+		String graphString = "";
+		for (GraphNode<Location, Path> node : nodes)
+		{
+			for (Path edge : node.getOutEdges())
+			{
+				graphString += node.getVertexData() + " ";
+				for ( Double property : edge.getProperties()) 
+				{
+					graphString += property + " ";
+				}
+				graphString += edge.getDestination() + ", ";
+			}
+		}
+		graphString = graphString.toLowerCase();
+		return graphString;
 	}
 	
 	/**
