@@ -50,7 +50,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	public List<Location> getVertices() 
 	{
 		ArrayList<String> list = new ArrayList<String>();
-		boolean t = ture;
+		boolean t = true;
 		for (GraphNode<Location, Path> node : nodes) {
 			t = true;
 			for (String s : list)
