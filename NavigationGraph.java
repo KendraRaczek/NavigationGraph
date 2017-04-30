@@ -33,7 +33,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		int numVertices = getNumVertices();
 		if (numVertices > src || numVertices > dest) 
 		{
-			throw  new IndexOutOfBoundsException(); //Not sure which exception to throw
+			throw  new IllegalArgumentException(); //Not sure which exception to throw
 		}
 		matrix[src][dest] = edge; //Find Agacency matrix
 	}
@@ -47,7 +47,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		int numVertices = getNumVertices();
 		if (numVertices > src || numVertices > dest)
 		{
-			throw  new IndexOutOfBoundsException(); 
+			throw  new IllegalArgumentException(); 
 		}
 		else 
 		{
