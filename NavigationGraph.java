@@ -99,24 +99,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	}
 	
 	public List<Location> getNeighbors(Location vertex) {
-//		  int numVertices = getNumVertices();
-//		  if (numV <= v) 
-//		  {
-//			  throw new IndexOutOfBoundsException();
-//		  }
-//		  else
-//		  {
-//			  List<Integer> neighbors = new ArrayList<Integer>();
-//			  for (int x : adjListsMap.get(vertex)) 
-//			  {
-//				  neighbors.add(x);
-//			  }
-//		  }
-//		  
-//		    }
-//		    
-//		    return neighbors;
-//		
+
 	}
 	
 	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName) {
