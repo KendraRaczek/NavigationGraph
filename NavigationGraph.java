@@ -32,17 +32,20 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 
 	public void addEdge(Location src, Location dest, Path edge)
 	{
-		int numVertices = getNumVertices();
-		if (numVertices > src || numVertices > dest) throw new IllegalArgumentException();
 		
 		// search through Graph's list
-		GraphNode<Location, Path> srcNode;
+		GraphNode<Location, Path> srcNode = null;
+		GraphNode<Location, Path> destNode = null;
 		for (GraphNode<Location, Path> node : nodes) {
 			if ( node.getVertexData().equals(src)) {
 				srcNode = node;
 			}
+			if ( node.getVertexData().equals(destNode)) {
+				destNode = node;
+			}
 		}
 		if (srcNode == null) throw new IllegalArgumentException();
+		if (destNode == null) throw new IllegalArgumentException();
 		
 		srcNode.addOutEdge(edge);
 	}
