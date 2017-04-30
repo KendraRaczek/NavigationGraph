@@ -69,7 +69,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 				}
 			}
 			if (srcNode == null) throw new IllegalArgumentException();		
-			return (Path) srcNode.getOutEdges(); // Maybe..?
+			return (Path) srcNode.getOutEdges(); // Not yet correct, figuring out how to get the specific edge
 		}
 	
 	}
