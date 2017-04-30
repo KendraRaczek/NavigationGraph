@@ -10,8 +10,8 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	private int id = 0;
 	private String[] propName;
 	
-	public NavigationGraph(String[] edgePropertyNames) {
-		
+	public NavigationGraph(String[] edgePropertyNames) 
+	{
 		this.nodes = new ArrayList<GraphNode<Location, Path>>();
 		this.numVertices = 0;
 		this.propName = edgePropertyNames;
@@ -19,15 +19,12 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	
 	
-	public void addVertex(Location vertex) {
-		
-		
+	public void addVertex(Location vertex) 
+	{
 		GraphNode<Location, Path> nodeToAdd = new GraphNode<Location, Path>(vertex, id);
 		nodes.add(nodeToAdd);
 		this.numVertices++;
 		this.id++;
-		
-		
 	}
 
 	public void addEdge(Location src, Location dest, Path edge)
@@ -50,7 +47,8 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		srcNode.addOutEdge(edge);
 	}
 	
-	public List<Location> getVertices() {
+	public List<Location> getVertices() 
+	{
 		
 	}
 	
