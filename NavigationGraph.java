@@ -80,17 +80,16 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	public List<Path> getOutEdges(Location src) 
 	{
-	    List list = new ArrayList();
-		int numVertices = getNumVertices();
-		for (int i = 0; i < numVertices; i++)
-		{
-			double temp = matrix[src][i];
-			if (temp != 0) 
-			{
-				list.add(temp); //What is the list?
+		
+		GraphNode<Location, Path> srcNode = null;
+		for (GraphNode<Location, Path> node : nodes) {
+			if ( node.getVertexData().equals(src)) {
+				srcNode = node;
 			}
 		}
-		return list;
+		if (srcNode == null) throw new IllegalArgumentException();
+		
+		return srcNode.getOutEdges();
 	}
 	
 	public List<Location> getNeighbors(Location vertex) {
