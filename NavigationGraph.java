@@ -8,13 +8,13 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	private ArrayList<GraphNode<Location, Path>> nodes;
 	private int numVertices;
 	private int id = 0;
-	private String[] propName;
+	private String[] propNames;
 	
 	public NavigationGraph(String[] edgePropertyNames) 
 	{
 		this.nodes = new ArrayList<GraphNode<Location, Path>>();
 		this.numVertices = 0;
-		this.propName = edgePropertyNames;
+		this.propNames = edgePropertyNames;
 	}
 	
 	
@@ -125,7 +125,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	public String[] getEdgePropertyNames()
 	{
-		return propName;
+		return propNames;
 	}
 	
 	public int getNumVertices() 
