@@ -49,7 +49,16 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	public List<Location> getVertices() 
 	{
-		
+		ArrayList<String> list = new ArrayList<String>();
+		boolean t = ture;
+		for (GraphNode<Location, Path> node : nodes) {
+			t = true;
+			for (String s : list)
+				if (s.equals(node.getVertexData().getname()))
+					t = false;
+			if (t) list.add(node.getVertexData().getname())
+		}
+		return list;
 	}
 	
 	public Path getEdgeIfExists(Location src, Location dest) 
