@@ -60,10 +60,20 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		}
 		else 
 		{
-			return matrix[src][dest] != 0;
+			GraphNode<Location, Path> srcNode;
+			for (GraphNode<Location, Path> node : nodes)
+			{
+				if ( node.getVertexData().equals(src)) 
+				{
+					srcNode = node;
+				}
+			}
+			if (srcNode == null) throw new IllegalArgumentException();		
+			return (Path) srcNode.getOutEdges(); // Maybe..?
 		}
 	
 	}
+	
 	
 	public List<Path> getOutEdges(Location src) 
 	{
