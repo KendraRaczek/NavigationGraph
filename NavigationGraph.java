@@ -6,15 +6,15 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	//TODO: Implement all methods of GraphADT
 	
 	private ArrayList<GraphNode<Location, Path>> nodes;
-	private int size;
+	private int numVertices;
 	private int id = 0;
 	private String[] propName;
 	
 	public NavigationGraph(String[] edgePropertyNames) {
 		
 		this.nodes = new ArrayList<GraphNode<Location, Path>>();
-		this.size = 0;
-		propName = edgePropertyNames;
+		this.numVertices = 0;
+		this.propName = edgePropertyNames;
 	}
 	
 	
@@ -24,27 +24,34 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		
 		GraphNode<Location, Path> nodeToAdd = new GraphNode<Location, Path>(vertex, id);
 		nodes.add(nodeToAdd);
-		this.size++;
+		this.numVertices++;
 		this.id++;
 		
 		
 	}
 
-	public void addEdge(V src, V dest, E edge)
+	public void addEdge(Location src, Location dest, Path edge)
 	{
 		int numVertices = getNumVertices();
-		if (numVertices > src || numVertices > dest) 
-		{
-			throw  new IllegalArgumentException(); //Not sure which exception to throw
+		if (numVertices > src || numVertices > dest) throw new IllegalArgumentException();
+		
+		// search through Graph's list
+		GraphNode<Location, Path> srcNode;
+		for (GraphNode<Location, Path> node : nodes) {
+			if ( node.getVertexData().equals(src)) {
+				srcNode = node;
+			}
 		}
-		matrix[src][dest] = edge; //Find Agacency matrix
+		if (srcNode == null) throw new IllegalArgumentException();
+		
+		srcNode.addOutEdge(edge);
 	}
 	
-	public List<V> getVertices() {
+	public List<Location> getVertices() {
 		
 	}
 	
-	public E getEdgeIfExists(V src, V dest) 
+	public Path getEdgeIfExists(Location src, Location dest) 
 	{
 		int numVertices = getNumVertices();
 		if (numVertices > src || numVertices > dest)
@@ -58,7 +65,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	}
 	
-	public List<E> getOutEdges(V src) 
+	public List<Path> getOutEdges(Location src) 
 	{
 	    List list = new ArrayList();
 		int numVertices = getNumVertices();
@@ -73,7 +80,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		return list;
 	}
 	
-	public List<V> getNeighbors(V vertex) {
+	public List<Location> getNeighbors(Location vertex) {
 //		  int numVertices = getNumVertices();
 //		  if (numV <= v) 
 //		  {
@@ -94,18 +101,18 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 //		
 	}
 	
-	public List<E> getShortestRoute(V src, V dest, String edgePropertyName) {
+	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName) {
 		
 	}
 	
 	public String[] getEdgePropertyNames()
 	{
-		return propName;	
+		return propName;
 	}
 	
 	public int getNumVertices() 
 	{
-		return size;
+		return numVertices;
 	}
 	public String toString() 
 	{
