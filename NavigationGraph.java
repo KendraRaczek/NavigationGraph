@@ -7,6 +7,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	private ArrayList<GraphNode<Location, Path>> nodes;
 	private int size;
+	private static int id = 0;
 	
 	public NavigationGraph(String[] edgePropertyNames) {
 		
@@ -17,6 +18,13 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	
 	public void addVertex(Location vertex) {
+		
+		
+		GraphNode<Location, Path> nodeToAdd = new GraphNode<Location, Path>(vertex, id);
+		nodes.add(nodeToAdd);
+		size++;
+		id++;
+		
 		
 	}
 
