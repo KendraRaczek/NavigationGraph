@@ -56,25 +56,24 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	public Path getEdgeIfExists(Location src, Location dest) 
 	{
-		int numVertices = getNumVertices();
-		if (numVertices > src || numVertices > dest)
+		GraphNode<Location, Path> srcNode = null;
+		for (GraphNode<Location, Path> node : nodes)
 		{
-			throw  new IllegalArgumentException(); 
-		}
-		else 
-		{
-			GraphNode<Location, Path> srcNode;
-			for (GraphNode<Location, Path> node : nodes)
+			if ( node.getVertexData().equals(src)) 
 			{
-				if ( node.getVertexData().equals(src)) 
-				{
-					srcNode = node;
-				}
+				srcNode = node;
 			}
-			if (srcNode == null) throw new IllegalArgumentException();		
-			return (Path) srcNode.getOutEdges(); // Not yet correct, figuring out how to get the specific edge
 		}
-	
+		if (srcNode == null) throw new IllegalArgumentException();		
+		
+		for (Path edge : srcNode.getOutEdges()) 
+		{
+			if ( edge.getDestination() == dest)
+			{
+				return edge;
+			}
+		}
+		return null;
 	}
 	
 	
