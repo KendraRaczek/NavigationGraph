@@ -5,11 +5,13 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 
 	//TODO: Implement all methods of GraphADT
 	
-	private ArrayList<GraphNode<Location, Path>> vertices;
+	private ArrayList<GraphNode<Location, Path>> nodes;
+	private int size;
 	
 	public NavigationGraph(String[] edgePropertyNames) {
 		
-		vertices = new ArrayList<GraphNode<Location, Path>>();
+		this.nodes = new ArrayList<GraphNode<Location, Path>>();
+		this.size = 0;
 	}
 	
 	
