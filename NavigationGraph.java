@@ -33,11 +33,14 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		// search through Graph's list
 		GraphNode<Location, Path> srcNode = null;
 		GraphNode<Location, Path> destNode = null;
-		for (GraphNode<Location, Path> node : nodes) {
-			if ( node.getVertexData().equals(src)) {
+		for (GraphNode<Location, Path> node : nodes) 
+		{
+			if ( node.getVertexData().equals(src)) 
+			{
 				srcNode = node;
 			}
-			if ( node.getVertexData().equals(destNode)) {
+			if ( node.getVertexData().equals(destNode))
+			{
 				destNode = node;
 			}
 		}
@@ -51,7 +54,8 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	{
 		ArrayList<Location> list = new ArrayList<Location>();
 		boolean t = true;
-		for (GraphNode<Location, Path> node : nodes) {
+		for (GraphNode<Location, Path> node : nodes) 
+		{
 			t = true;
 			for (Location n : list)
 				if (n == node.getVertexData())
@@ -88,8 +92,10 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	{
 		
 		GraphNode<Location, Path> srcNode = null;
-		for (GraphNode<Location, Path> node : nodes) {
-			if ( node.getVertexData().equals(src)) {
+		for (GraphNode<Location, Path> node : nodes)
+		{
+			if ( node.getVertexData().equals(src)) 
+			{
 				srcNode = node;
 			}
 		}
@@ -98,29 +104,14 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		return srcNode.getOutEdges();
 	}
 	
-	public List<Location> getNeighbors(Location vertex) {
-//		  int numVertices = getNumVertices();
-//		  if (numV <= v) 
-//		  {
-//			  throw new IndexOutOfBoundsException();
-//		  }
-//		  else
-//		  {
-//			  List<Integer> neighbors = new ArrayList<Integer>();
-//			  for (int x : adjListsMap.get(vertex)) 
-//			  {
-//				  neighbors.add(x);
-//			  }
-//		  }
-//		  
-//		    }
-//		    
-//		    return neighbors;
-//		
+	public List<Location> getNeighbors(Location vertex)
+	{
+		//These Two methods left, we need exact definition of neighbors. 
 	}
 	
-	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName) {
-		
+	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName)
+	{
+		//These Two methods left, this should be able to be found Online
 	}
 	
 	public String[] getEdgePropertyNames()
