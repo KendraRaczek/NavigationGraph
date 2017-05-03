@@ -9,8 +9,8 @@
 // Author: Add
 // Author: Add
 //
-//////////////////////////// 80 columns wide //////////////////////////////////import java.util.ArrayList;
-
+//////////////////////////// 80 columns wide //////////////////////////////////
+import java.util.ArrayList;
 import java.util.List;
 
 public class NavigationGraph implements GraphADT<Location, Path> {
