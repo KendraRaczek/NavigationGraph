@@ -192,11 +192,9 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	}
 	
 	/**
-	 * Returns a Location object given its name
-	 * 
-	 * @param name
-	 *            name of the location
-	 * @return Location object
+	 * Returns a String of the graph information.
+	 *
+	 * @return String the information in nodes
 	 */
 	public String toString() 
 	{
