@@ -157,22 +157,47 @@ public class NavigationGraph implements GraphADT<Location, Path>
 		}
 		return neighbors;
      	}	
-	
+	/**
+	 * This method calculates via the weights the shortest possible route than one can take.
+	 * It then returns a list with the order of the vertices that use the least weight.
+	 *
+	 * @param Location src This is the origin, where we are starting from
+	 * @param Location dest This is the end, the node we want to finish at
+	 * @param String edgePropertyName The weights that are used to calculate shortest route
+	 * @return List<Path> Returns a list of vertices that uses the least weight. 
+	 */	
 	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName)
 	{
 		//This method left, this should be able to be found Online
 	}
 	
+	/**
+	 * Returns an String array of the property names of vertices
+	 *
+	 * @return String[] Edge property names array
+	 */
 	public String[] getEdgePropertyNames()
 	{
 		return propNames;
 	}
 	
+	/**
+	 * Returns an int of the total number of vertices.
+	 *
+	 * @return int A total of the number of vertices
+	 */
 	public int getNumVertices() 
 	{
 		return numVertices;
 	}
 	
+	/**
+	 * Returns a Location object given its name
+	 * 
+	 * @param name
+	 *            name of the location
+	 * @return Location object
+	 */
 	public String toString() 
 	{
 		String graphString = "";
