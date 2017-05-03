@@ -170,6 +170,8 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	 */	
 	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName)
 	{
+		if (src.equals(dest)) throw new IllegalArgumentException();
+		if ((src == null) || (dest == null)) throw new IllegalArgumentException();
 		//This method left, this should be able to be found Online
 	}
 	
