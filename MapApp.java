@@ -1,3 +1,15 @@
+/////////////////////////////////////////////////////////////////////////////
+// Semester:         CS367 Spring 2016 
+// PROJECT:          p5
+// FILE:             NavigationGraph.java
+// TEAM:    72
+// Author: Jonathan Nelson, jnelson33@wisc.edu, jnelson, Lec 001
+// Author: David Zhu, dzhu46@wisc.edu, zhu, Lec 002
+// Author: Kendra Raczek, raczek@wisc.edu, raczek, Lec 001
+// Author: Xinhui Yu, xyu269@wisc.edu, Xinhui Yu, Lec 002
+//
+//////////////////////////// 80 columns wide //////////////////////////////////
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -196,6 +208,7 @@ public class MapApp {
 				boolean t = true;
 				srcName = in.next();
 				destName = in.next();
+				// Finds the vertices
 				for (GraphNode<Location, Path> a: graph.nodes)
 					if (a.getVertexData().getName().equals(srcName)){
 						t = false;
@@ -205,6 +218,7 @@ public class MapApp {
 					src = new Location(srcName);
 					graph.addVertex(src);
 				}
+				// Scans through the the graph nodes
 				for (GraphNode<Location, Path> a: graph.nodes)
 					if (a.getVertexData().getName().equals(destName)){
 						t = false;
@@ -214,6 +228,7 @@ public class MapApp {
 					dest = new Location(destName);
 					graph.addVertex(dest);
 				}
+				// Creates an ArrayList  to store the parsed info
 				ArrayList<Double> propList = new ArrayList<Double>();
 				propList.add(in.nextDouble());
 				propList.add(in.nextDouble());
@@ -223,6 +238,7 @@ public class MapApp {
 //					if (a.getVertexData().equals(src))
 //						a.addOutEdge(edge);
 			}
+			//Closes the file
 			in.close();
 			return graph;
 	}
