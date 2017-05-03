@@ -1,4 +1,16 @@
-import java.util.ArrayList;
+/////////////////////////////////////////////////////////////////////////////
+// Semester:         CS367 Spring 2016 
+// PROJECT:          p4
+// FILE:             IntervalTree.java
+// REFERENCES:       Deb Deppler's class notes for insert and delete
+// TEAM:    18
+// Author: Jonathan Nelson, jnelson33@wisc.edu, jnelson, Lec 001
+// Author: Add
+// Author: Add
+// Author: Add
+//
+//////////////////////////// 80 columns wide //////////////////////////////////import java.util.ArrayList;
+
 import java.util.List;
 
 public class NavigationGraph implements GraphADT<Location, Path> {
