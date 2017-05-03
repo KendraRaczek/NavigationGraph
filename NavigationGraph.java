@@ -229,4 +229,23 @@ public class NavigationGraph implements GraphADT<Location, Path>
 		return null;
 	}
 
+
+	class NewGraphNode {
+	    // now MyClass can create and use instances of WrapperClass as needed.
+		
+		private boolean visited;
+		private double weight;
+		private GraphNode<Location, Path> predecessor;
+		private GraphNode<Location, Path> wrapperNode;
+		
+		private NewGraphNode(GraphNode<Location, Path> wrapperNode) 
+		{
+			this.wrapperNode = wrapperNode;
+			this.visited = false;
+			this.weight = Double.MAX_VALUE;
+			this.predecessor = null;
+		}
+		
+		
+	}
 }
