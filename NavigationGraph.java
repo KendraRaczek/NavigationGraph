@@ -125,7 +125,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName)
 	{
-		//These Two methods left, this should be able to be found Online
+		//This method left, this should be able to be found Online
 	}
 	
 	public String[] getEdgePropertyNames()
