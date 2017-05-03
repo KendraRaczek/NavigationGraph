@@ -124,7 +124,9 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		}
 		path = mainNode.getOutEdges();
 		for (Path p : path) 
+		{
 			neighbors.add(p.getDestination());
+		}
 		return neighbors;
      	}	
 	
