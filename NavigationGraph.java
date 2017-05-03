@@ -39,7 +39,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 			{
 				srcNode = node;
 			}
-			if ( node.getVertexData().equals(destNode))
+			if ( node.getVertexData().equals(dest))
 			{
 				destNode = node;
 			}
@@ -118,9 +118,8 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 			}
 		}
 		path = mainNode.getOutEdges();
-		
-			neighbors.add();
-			
+		for (Path p ： path) 
+			neighbors.add(p.getdestinations());
 		return neighbors;
      	}	
 	
