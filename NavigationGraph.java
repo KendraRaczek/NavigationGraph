@@ -65,6 +65,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	 */	
 	public void addEdge(Location src, Location dest, Path edge)
 	{
+		if (src.equals(dest)) throw new IllegalArgumentException();
 		
 		// search through Graph's list
 		GraphNode<Location, Path> srcNode = null;
