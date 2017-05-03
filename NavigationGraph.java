@@ -28,7 +28,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	private String[] propNames; //Stores information that vertices hold
 	
 	/**
-	 * This is the constructer for the data members above. Allows code to update information.
+	 * This is the constructor for the data members above. Allows code to update information.
 	 *
 	 * @param String[] edgePropertyNames This initializes the ArrayList
 	 */
@@ -151,7 +151,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 				mainNode = node;
 			}
 		}
-		if (mathNode == null) throw new IllegalArgumentException();
+		if (mainNode == null) throw new IllegalArgumentException();
 		path = mainNode.getOutEdges();
 		for (Path p : path) 
 		{
