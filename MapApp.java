@@ -191,7 +191,53 @@ public class MapApp {
 	public static NavigationGraph createNavigationGraphFromMapFile(String graphFilepath){
 			// TODO: read/parse the input file graphFilepath and create
 			// NavigationGraph with vertices and edges
-			return null;
+			File file = new File(graphFilepath);
+			Scanner in = new Scanner(file);
+			String[] propName = new String[2];
+			int i =0;
+			in.next();
+			in.next();
+			for (i = 0; i < 2; i++)
+				propName[i] = in.next();
+			NavigationGraph graph = new NavigationGraph(propName);
+			Location src = null ;
+			Location dest = null;
+			String srcName;
+			String destName;
+			Path edge;
+			while (in.hasNextLine()){
+				boolean t = true;
+				srcName = in.next();
+				destName = in.next();
+				for (GraphNode<Location, Path> a: graph.nodes)
+					if (a.getVertexData().getName().equals(srcName)){
+						t = false;
+						src = a.getVertexData();
+					}
+				if (t){
+					src = new Location(srcName);
+					graph.addVertex(src);
+				}
+				for (GraphNode<Location, Path> a: graph.nodes)
+					if (a.getVertexData().getName().equals(destName)){
+						t = false;
+						dest = a.getVertexData();
+					}
+				if (t){
+					dest = new Location(destName);
+					graph.addVertex(dest);
+				}
+				ArrayList<Double> propList = new ArrayList<Double>();
+				propList.add(in.nextDouble());
+				propList.add(in.nextDouble());
+				edge = new Path(src,dest, propList);
+				graph.addEdge(src, dest, edge);
+				for (GraphNode<Location,Path> a: graph.nodes)
+					if (a.getVertexData().equals(src))
+						a.addOutEdge(edge);
+			}
+			in.close();
+			return graph;
 
 	}
 
