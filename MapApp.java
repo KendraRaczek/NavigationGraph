@@ -192,7 +192,12 @@ public class MapApp {
 			// TODO: read/parse the input file graphFilepath and create
 			// NavigationGraph with vertices and edges
 			File file = new File(graphFilepath);
-			Scanner in = new Scanner(file);
+			Scanner in = null;
+			try {
+				in = new Scanner(file);
+			} catch (FileNotFoundException e) {
+				System.out.println("File Not Found");
+			}
 			String[] propName = new String[2];
 			int i =0;
 			in.next();
