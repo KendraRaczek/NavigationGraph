@@ -89,6 +89,12 @@ public class NavigationGraph implements GraphADT<Location, Path>
 		srcNode.addOutEdge(edge);
 	}
 	
+	/**
+     * This method traverses the graph for all of the vertices (nodes),
+     * adds them to an ArrayList, and returns the ArrayList.
+     *
+     * @return list, the ArrayList containing the vertices
+     */
 	public List<Location> getVertices() 
 	{
 		ArrayList<Location> list = new ArrayList<Location>();
@@ -99,6 +105,13 @@ public class NavigationGraph implements GraphADT<Location, Path>
 		return list;
 	}
 	
+	/**
+	 * Returns a path of the edge that is being checked if it has existence. 
+	 *
+	 * @param Location src The first node that checks 
+	 * @param Location dest The last node that is being checked
+	 * @return Path A list of all locations
+	 */	
 	public Path getEdgeIfExists(Location src, Location dest) 
 	{
 		GraphNode<Location, Path> srcNode = null;
@@ -121,7 +134,12 @@ public class NavigationGraph implements GraphADT<Location, Path>
 		return null;
 	}
 	
-	
+	/**
+	 * Returns a list of out edges that are coming out of the verticies. 
+	 *
+	 * @param Location src The first node that the edges are coming out of
+	 * @return List<Path> A list of all edges coming out
+	 */	
 	public List<Path> getOutEdges(Location src) 
 	{
 		
@@ -138,6 +156,12 @@ public class NavigationGraph implements GraphADT<Location, Path>
 		return srcNode.getOutEdges();
 	}
 	
+	/**
+	 * Returns a list of all neighbors from the main verticy
+	 *
+	 * @param Location vertex The first node that the neighbors are calculated
+	 * @return List<Location> A list of all nieghbors
+	 **/
 	public List<Location> getNeighbors(Location vertex)
 	{
                 List<Location> neighbors = new ArrayList<Location>();
