@@ -100,8 +100,8 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	public List<Location> getNeighbors(Location vertex)
 	{
-        List<Location> neighbors = new ArrayList<Location>();
-        List<Path> path = new ArrayList<Path>();
+                List<Location> neighbors = new ArrayList<Location>();
+                List<Path> path = new ArrayList<Path>();
 
 		GraphNode<Location, Path> mainNode = null;
 		for (GraphNode<Location, Path> node : nodes) 
@@ -112,8 +112,8 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 			}
 		}
 		path = mainNode.getOutEdges();
-		for (Path p ： path) 
-			neighbors.add(p.getdestinations());
+		for (Path p : path) 
+			neighbors.add(p.getDestinations());
 		for (GraphNode<Location, Path> node : nodes) 
 			{
 				for (Path p : node.getOutEdges())
