@@ -1,16 +1,3 @@
-/////////////////////////////////////////////////////////////////////////////
-// Semester:         CS367 Spring 2017
-// PROJECT:          p5
-// FILE:             MapApp.java
-// TEAM:    72
-// Author: Jonathan Nelson, jnelson33@wisc.edu, jnelson, Lec 001
-// Author: David Zhu, dzhu46@wisc.edu, zhu, Lec 002
-// Author: Add
-// Author: Add
-//
-//////////////////////////// 80 columns wide //////////////////////////////////
-
-import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -55,10 +42,10 @@ public class MapApp {
 		} catch (FileNotFoundException e) {
 			System.out.println("GRAPH FILE: " + locationFileName + " was not found.");
 			System.exit(1);
-		} catch (InvalidFileException e) {
-			System.out.println(e.getMessage());
-			System.exit(1);
-		}
+		} //catch (InvalidFileException e) {
+//			System.out.println(e.getMessage());
+//			System.exit(1);
+//		}
 
 	}
 
@@ -188,16 +175,11 @@ public class MapApp {
 	 *             if any property value is not numeric 
 	 */
 
-	public static NavigationGraph createNavigationGraphFromMapFile(String graphFilepath){
+	public static NavigationGraph createNavigationGraphFromMapFile(String graphFilepath) throws FileNotFoundException{
 			// TODO: read/parse the input file graphFilepath and create
 			// NavigationGraph with vertices and edges
 			File file = new File(graphFilepath);
-			Scanner in = null;
-			try {
-				in = new Scanner(file);
-			} catch (FileNotFoundException e) {
-				System.out.println("File Not Found");
-			}
+			Scanner in = new Scanner(file);
 			String[] propName = new String[2];
 			int i =0;
 			in.next();
@@ -237,13 +219,12 @@ public class MapApp {
 				propList.add(in.nextDouble());
 				edge = new Path(src,dest, propList);
 				graph.addEdge(src, dest, edge);
-				for (GraphNode<Location,Path> a: graph.nodes)
-					if (a.getVertexData().equals(src))
-						a.addOutEdge(edge);
+//				for (GraphNode<Location,Path> a: graph.nodes)
+//					if (a.getVertexData().equals(src))
+//						a.addOutEdge(edge);
 			}
 			in.close();
 			return graph;
-
 	}
 
 }
