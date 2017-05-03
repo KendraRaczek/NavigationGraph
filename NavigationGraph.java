@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class NavigationGraph implements GraphADT<Location, Path> 
 {	
-	private ArrayList<GraphNode<Location, Path>> nodes; // ArrayList that stores the graphNode data
+	public ArrayList<GraphNode<Location, Path>> nodes; // ArrayList that stores the graphNode data
 	private int numVertices; //A value representing the total number of vertices
 	private int id = 0; //Used in getShortestRoute in order to mark as visited
 	private String[] propNames; //Stores information that vertices hold
