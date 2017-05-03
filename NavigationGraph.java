@@ -4,8 +4,8 @@
 // FILE:             NavigationGraph.java
 // TEAM:    72
 // Author: Jonathan Nelson, jnelson33@wisc.edu, jnelson, Lec 001
-// Author: Add
-// Author: Add
+// Author: David Zhu, dzhu46@wisc.edu, zhu, Lec 002
+// Author: 
 // Author: Add
 //
 //////////////////////////// 80 columns wide //////////////////////////////////
