@@ -159,15 +159,16 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	}
 	
 	/**
-	 * Returns a list of all neighbors from the main verticy
+	 * Returns a list of all neighbors from the main vertex
 	 *
 	 * @param Location vertex The first node that the neighbors are calculated
 	 * @return List<Location> A list of all nieghbors
 	 **/
 	public List<Location> getNeighbors(Location vertex)
 	{
-                List<Location> neighbors = new ArrayList<Location>();
-                List<Path> path = new ArrayList<Path>();
+		if (vertex == null) throw new IllegalArgumentException();
+		List<Location> neighbors = new ArrayList<Location>();
+		List<Path> path = new ArrayList<Path>();
 
 		GraphNode<Location, Path> mainNode = null;
 		for (GraphNode<Location, Path> node : nodes) 
