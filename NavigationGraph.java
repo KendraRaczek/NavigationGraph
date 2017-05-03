@@ -105,7 +105,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	}
 	
 	public List<Location> getNeighbors(Location vertex)
-		{
+	{
         List<Location> neighbors = new ArrayList<Location>();
         List<Path> path = new ArrayList<Path>();
 
@@ -122,7 +122,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 			neighbors.add();
 			
 		return neighbors;
-     }	
+     	}	
 	
 	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName)
 	{
