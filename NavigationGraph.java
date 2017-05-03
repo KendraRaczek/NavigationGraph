@@ -6,7 +6,7 @@
 // Author: Jonathan Nelson, jnelson33@wisc.edu, jnelson, Lec 001
 // Author: David Zhu, dzhu46@wisc.edu, zhu, Lec 002
 // Author: Kendra Raczek, raczek@wisc.edu, raczek, Lec 001
-// Author: Add
+// Author: Xinhui Yu, xyu269@wisc.edu, Xinhui Yu, Lec 002
 //
 //////////////////////////// 80 columns wide //////////////////////////////////
 
