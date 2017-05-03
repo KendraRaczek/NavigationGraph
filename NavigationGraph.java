@@ -150,6 +150,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 				mainNode = node;
 			}
 		}
+		if (mathNode == null) throw new IllegalArgumentException();
 		path = mainNode.getOutEdges();
 		for (Path p : path) 
 		{
@@ -222,7 +223,8 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	 *            name of the location
 	 * @return Location object
 	 */
-	public Location getLocationByName(String name) {
+	public Location getLocationByName(String name) 
+	{
 		for (GraphNode<Location, Path> node : nodes)
 			if (node.getVertexData().getName().equals(name))
 				return node.getVertexData();
