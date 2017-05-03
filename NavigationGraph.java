@@ -23,9 +23,9 @@ import java.util.List;
 public class NavigationGraph implements GraphADT<Location, Path> 
 {	
 	public ArrayList<GraphNode<Location, Path>> nodes; // ArrayList that stores the graphNode data
-	private int numVertices; //A value representing the total number of vertices
-	private int id = 0; //Used in getShortestRoute in order to mark as visited
-	private String[] propNames; //Stores information that vertices hold
+	private int numVertices; // A value representing the total number of vertices
+	private int id = 0; // Used in getShortestRoute in order to mark as visited
+	private String[] propNames; // Stores information that vertices hold
 	
 	/**
 	 * This is the constructor for the data members above. Allows code to update information.
@@ -34,7 +34,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	 */
 	public NavigationGraph(String[] edgePropertyNames) 
 	{
-		this.nodes = new ArrayList<GraphNode<Location, Path>>(); //Initializes ArrayList
+		this.nodes = new ArrayList<GraphNode<Location, Path>>(); // Initializes ArrayList
 		this.numVertices = 0;
 		this.propNames = edgePropertyNames;
 	}
@@ -48,6 +48,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	 */	
 	public void addVertex(Location vertex) 
 	{
+		// GraphNode representing Location
 		GraphNode<Location, Path> nodeToAdd = new GraphNode<Location, Path>(vertex, id);
 		nodes.add(nodeToAdd);
 		this.numVertices++;
@@ -68,10 +69,9 @@ public class NavigationGraph implements GraphADT<Location, Path>
 		if (src.equals(dest)) throw new IllegalArgumentException();
 		if ((edge == null) || (src == null) || (dest == null)) throw new IllegalArgumentException();
 		
-		// search through Graph's list
 		GraphNode<Location, Path> srcNode = null;
 		GraphNode<Location, Path> destNode = null;
-		//Searches for the correct vertices
+		// Searches for the correct vertices
 		for (GraphNode<Location, Path> node : nodes) 
 		{
 			if ( node.getVertexData().equals(src)) 
@@ -83,10 +83,10 @@ public class NavigationGraph implements GraphADT<Location, Path>
 				destNode = node;
 			}
 		}
-		//Ensures that vertices are in the structure
+		// Ensures that vertices are in the structure
 		if (srcNode == null) throw new IllegalArgumentException();
 		if (destNode == null) throw new IllegalArgumentException();
-		//Adds the edge
+		// Adds the edge
 		srcNode.addOutEdge(edge);
 	}
 	
@@ -98,6 +98,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
      */
 	public List<Location> getVertices() 
 	{
+		// list of Locations rather than GraphNodes
 		ArrayList<Location> list = new ArrayList<Location>();
 		for (GraphNode<Location, Path> node : nodes) 
 		{
@@ -116,6 +117,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	public Path getEdgeIfExists(Location src, Location dest) 
 	{
 		if (dest == null) throw new IllegalArgumentException();
+		
 		GraphNode<Location, Path> srcNode = null;
 		for (GraphNode<Location, Path> node : nodes)
 		{
@@ -137,14 +139,13 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	}
 	
 	/**
-	 * Returns a list of out edges that are coming out of the verticies. 
+	 * Returns a list of out edges that are coming out of the vertices. 
 	 *
 	 * @param Location src The first node that the edges are coming out of
 	 * @return List<Path> A list of all edges coming out
 	 */	
 	public List<Path> getOutEdges(Location src) 
 	{
-		
 		GraphNode<Location, Path> srcNode = null;
 		for (GraphNode<Location, Path> node : nodes)
 		{
@@ -162,7 +163,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	 * Returns a list of all neighbors from the main vertex
 	 *
 	 * @param Location vertex The first node that the neighbors are calculated
-	 * @return List<Location> A list of all nieghbors
+	 * @return List<Location> A list of all neighbors
 	 **/
 	public List<Location> getNeighbors(Location vertex)
 	{
@@ -185,7 +186,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 			neighbors.add(p.getDestination());
 		}
 		return neighbors;
-     	}	
+     }	
 	/**
 	 * This method calculates via the weights the shortest possible route than one can take.
 	 * It then returns a list with the order of the vertices that use the least weight.
@@ -200,6 +201,8 @@ public class NavigationGraph implements GraphADT<Location, Path>
 		if (src.equals(dest)) throw new IllegalArgumentException();
 		if ((src == null) || (dest == null)) throw new IllegalArgumentException();
 		//This method left, this should be able to be found Online
+		
+		return null;
 	}
 	
 	/**
@@ -223,7 +226,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	}
 	
 	/**
-	 * Returns a String of the graph information.
+	 * Returns a properly-formatted String of the graph information.
 	 *
 	 * @return String the information in nodes
 	 */
@@ -247,7 +250,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	}
 	
 	/**
-	 * Returns a Location object given its name
+	 * Returns a Location object given its name.
 	 * 
 	 * @param name
 	 *            name of the location
