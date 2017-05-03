@@ -1,9 +1,8 @@
 /////////////////////////////////////////////////////////////////////////////
-// Semester:         CS367 Spring 2016 
-// PROJECT:          p4
-// FILE:             IntervalTree.java
-// REFERENCES:       Deb Deppler's class notes for insert and delete
-// TEAM:    18
+// Semester:         CS367 Spring 2017
+// PROJECT:          p5
+// FILE:             MapApp.java
+// TEAM:    72
 // Author: Jonathan Nelson, jnelson33@wisc.edu, jnelson, Lec 001
 // Author: Add
 // Author: Add
