@@ -115,6 +115,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	 */	
 	public Path getEdgeIfExists(Location src, Location dest) 
 	{
+		if (dest == null) throw new IllegalArgumentException();
 		GraphNode<Location, Path> srcNode = null;
 		for (GraphNode<Location, Path> node : nodes)
 		{
