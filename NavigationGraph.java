@@ -105,9 +105,24 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	}
 	
 	public List<Location> getNeighbors(Location vertex)
-	{
-		//These Two methods left, we need exact definition of neighbors. 
-	}
+		{
+        List<Location> neighbors = new ArrayList<Location>();
+        List<Path> path = new ArrayList<Path>();
+
+		GraphNode<Location, Path> mainNode = null;
+		for (GraphNode<Location, Path> node : nodes) 
+		{
+			if ( node.getVertexData().equals(vertex)) 
+			{
+				mainNode = node;
+			}
+		}
+		path = mainNode.getOutEdges();
+		
+			neighbors.add();
+			
+		return neighbors;
+     }	
 	
 	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName)
 	{
