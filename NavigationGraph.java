@@ -305,7 +305,10 @@ public class NavigationGraph implements GraphADT<Location, Path>
 				}
 				graphString += edge.getDestination() + ", ";
 			}
+			graphString = graphString.substring(0,graphString.length()-2);
+			graphString += '\n';
 		}
+		graphString = graphString.substring(0,graphString.length()-1);
 		graphString = graphString.toLowerCase();
 		return graphString;
 	}
