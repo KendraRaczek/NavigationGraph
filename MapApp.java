@@ -187,7 +187,6 @@ public class MapApp {
 	 */
 
 public static NavigationGraph createNavigationGraphFromMapFile(String graphFilepath) throws FileNotFoundException, InvalidFileException{
-			// TODO: read/parse the input file graphFilepath and create
 			// NavigationGraph with vertices and edges
 			if (graphFilepath.equals(" ") || graphFilepath == null)
 				throw new FileNotFoundException();
@@ -241,10 +240,22 @@ public static NavigationGraph createNavigationGraphFromMapFile(String graphFilep
 					graph.addVertex(dest);
 				}
 				ArrayList<Double> propList = new ArrayList<Double>();
-				propList.add(in.nextDouble());
-				propList.add(in.nextDouble());
-				edge = new Path(src,dest, propList);
-				graph.addEdge(src, dest, edge);
+				
+					for (int j=0; j < propName.length; j++) {
+						//If an edge does not have enough properties in file or property is not numeric
+						if (!in.hasNextDouble()) {
+							in.close();
+							throw new InvalidFileException("The file format is invalid!");
+						}
+						propList.add(in.nextDouble());
+					}			
+					//If an edge has too many properties in file
+					if (in.hasNextDouble()) {
+						in.close();
+						throw new InvalidFileException("The file format is invalid!");
+					}
+					edge = new Path(src,dest, propList);
+					graph.addEdge(src, dest, edge);
 			}
 			in.close();
 
