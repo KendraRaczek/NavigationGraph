@@ -194,55 +194,57 @@ public class MapApp {
 			Scanner in = new Scanner(file);
 			String[] propName = new String[2];
 			int i =0;
-			in.next();
-			in.next();
+			Scanner scan = new Scanner(in.nextLine());
+			scan.next();
+			scan.next();
 			for (i = 0; i < 2; i++)
-				propName[i] = in.next();
+				propName[i] = scan.next();
 			NavigationGraph graph = new NavigationGraph(propName);
 			Location src = null ;
 			Location dest = null;
 			String srcName;
 			String destName;
 			Path edge;
+			boolean t;
+			String line;
 			while (in.hasNextLine()){
-				boolean t = true;
-				srcName = in.next();
+				t = true;
+				line = in.nextLine();
+				scan = new Scanner(line);
+				srcName = scan.next();
 				srcName = srcName.toLowerCase();
-				destName = in.next();
+				destName = scan.next();
 				destName = destName.toLowerCase();
-				// Finds the vertices
+
 				for (GraphNode<Location, Path> a: graph.nodes)
 					if (a.getVertexData().getName().equals(srcName)){
 						t = false;
-						src = a.getVertexData();
+						src = graph.getLocationByName(srcName);
 					}
 				if (t){
 					src = new Location(srcName);
 					graph.addVertex(src);
 				}
-				// Scans through the the graph nodes
-				for (GraphNode<Location, Path> a: graph.nodes)
-					if (a.getVertexData().getName().equals(destName)){
+				t = true;
+				for (GraphNode<Location, Path> b: graph.nodes)
+					if (b.getVertexData().getName().equals(destName)){
 						t = false;
-						dest = a.getVertexData();
+						dest = graph.getLocationByName(destName);
 					}
 				if (t){
 					dest = new Location(destName);
 					graph.addVertex(dest);
 				}
-				// Creates an ArrayList  to store the parsed info
 				ArrayList<Double> propList = new ArrayList<Double>();
-				propList.add(in.nextDouble());
-				propList.add(in.nextDouble());
+				propList.add(scan.nextDouble());
+				propList.add(scan.nextDouble());
 				edge = new Path(src,dest, propList);
 				graph.addEdge(src, dest, edge);
-//				for (GraphNode<Location,Path> a: graph.nodes)
-//					if (a.getVertexData().equals(src))
-//						a.addOutEdge(edge);
 			}
-			//Closes the file
 			in.close();
+			scan.close();
 			return graph;
 	}
+
 
 }
