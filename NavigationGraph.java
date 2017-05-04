@@ -202,7 +202,8 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	{	
 		PriorityQueue<NewGraphNode> pq = new PriorityQueue<NewGraphNode>(
 			new Comparator<NewGraphNode>(){
-			public int compare(NewGraphNode a, NewGraphNode b){
+			
+				public int compare(NewGraphNode a, NewGraphNode b){
 				if (a.weight > b.weight) 
 					return 1;
 				else if (a.weight == b.weight)
@@ -323,28 +324,22 @@ public class NavigationGraph implements GraphADT<Location, Path>
 				return node.getVertexData();
 		return null;
 	}
+}
 
-
-	class NewGraphNode {
-    // now MyClass can create and use instances of WrapperClass as needed.
-	
-	public boolean visited;
-	public double weight;
-	public NewGraphNode prede;
-	public GraphNode<Location,Path> graphNode;
-	public Location location;
-
-	
-	NewGraphNode(GraphNode<Location,Path> node) 
+	class NewGraphNode 
 	{
-		this.location = node.getVertexData();
-		this.graphNode = node;
-		this.visited = false;
-		this.weight = Double.MAX_VALUE;
-		this.prede = null;
-	}
+		public boolean visited;
+		public double weight;
+		public NewGraphNode prede;
+		public GraphNode<Location,Path> graphNode;
+		public Location location;
 	
-	
-	
-	
+		NewGraphNode(GraphNode<Location,Path> node) 
+		{
+			this.location = node.getVertexData();
+			this.graphNode = node;
+			this.visited = false;
+			this.weight = Double.MAX_VALUE;
+			this.prede = null;
+		}
 }
