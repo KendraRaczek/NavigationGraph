@@ -191,6 +191,7 @@ public static NavigationGraph createNavigationGraphFromMapFile(String graphFilep
 			if (graphFilepath.equals(" ") || graphFilepath == null)
 				throw new FileNotFoundException();
 			File file = new File(graphFilepath);
+			//Scans in file
 			Scanner in = new Scanner(file);
 			int i =0;
 
@@ -201,7 +202,7 @@ public static NavigationGraph createNavigationGraphFromMapFile(String graphFilep
 				propName[i - 2] = headLine[i];
 			if (headLine.length < 3) {
 				in.close();
-
+				//Ensures correct file format
 				throw new InvalidFileException("The file format is invalid!");
 			}
 			NavigationGraph graph = new NavigationGraph(propName);
@@ -211,7 +212,8 @@ public static NavigationGraph createNavigationGraphFromMapFile(String graphFilep
 			String destName;
 			Path edge;
 			boolean t;
-
+			
+			//Scans all information
 			while (in.hasNextLine()){
 				t = true;
 
@@ -227,6 +229,7 @@ public static NavigationGraph createNavigationGraphFromMapFile(String graphFilep
 					}
 				if (t){
 					src = new Location(srcName);
+					//Transfers to graph
 					graph.addVertex(src);
 				}
 				t = true;
@@ -239,6 +242,7 @@ public static NavigationGraph createNavigationGraphFromMapFile(String graphFilep
 					dest = new Location(destName);
 					graph.addVertex(dest);
 				}
+				//Scans information to a graph
 				ArrayList<Double> propList = new ArrayList<Double>();
 				
 				for (int j=0; j < propName.length; j++) {
@@ -257,8 +261,9 @@ public static NavigationGraph createNavigationGraphFromMapFile(String graphFilep
 				edge = new Path(src,dest, propList);
 				graph.addEdge(src, dest, edge);
 			}
+			//Closes file
 			in.close();
-
+			//Returns necessary graph
 			return graph;
 	}
 
