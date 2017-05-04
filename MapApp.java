@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-// Semester:         CS367 Spring 2016 
+// Semester:         CS367 Spring 2017 
 // PROJECT:          p5
 // FILE:             NavigationGraph.java
 // TEAM:    72
@@ -20,7 +20,7 @@ import java.util.Scanner;
  * Driver class that reads/parses the input file and creates NavigationGraph
  * object.
  * 
- * @author CS367
+ * @author Jonathan, Harry, Kendra, David
  *
  */
 public class MapApp {
@@ -230,7 +230,7 @@ public class MapApp {
 						t = false;
 						src = graph.getLocationByName(srcName);
 					}
-				if (t){
+				if (t) {
 					src = new Location(srcName);
 					//Transfers to graph
 					graph.addVertex(src);
@@ -241,14 +241,22 @@ public class MapApp {
 						t = false;
 						dest = graph.getLocationByName(destName);
 					}
-				if (t){
+				if (t) {
 					dest = new Location(destName);
 					graph.addVertex(dest);
 				}
 				//Scans information to a graph
 				ArrayList<Double> propList = new ArrayList<Double>();
-				propList.add(scan.nextDouble());
-				propList.add(scan.nextDouble());
+				
+				for (int j=0; j < propName.length; j++) {
+					//If an edge does not have enough properties in file or property is not numeric
+					if (!scan.hasNextDouble()) throw new InvalidFileException("The file format is invalid!");
+					propList.add(scan.nextDouble());	
+				}
+				
+				//If an edge has too many properties in file
+				if (scan.hasNextDouble()) throw new InvalidFileException("The file format is invalid!");
+				
 				edge = new Path(src,dest, propList);
 				graph.addEdge(src, dest, edge);
 			}
