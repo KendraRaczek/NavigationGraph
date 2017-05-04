@@ -326,20 +326,20 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	}
 }
 
-	class NewGraphNode 
-	{
-		public boolean visited;
-		public double weight;
-		public NewGraphNode prede;
-		public GraphNode<Location,Path> graphNode;
-		public Location location;
+class NewGraphNode 
+{
+	public boolean visited;
+	public double weight;
+	public NewGraphNode prede;
+	public GraphNode<Location,Path> graphNode;
+	public Location location;
 	
-		NewGraphNode(GraphNode<Location,Path> node) 
-		{
-			this.location = node.getVertexData();
-			this.graphNode = node;
-			this.visited = false;
-			this.weight = Double.MAX_VALUE;
-			this.prede = null;
-		}
+	NewGraphNode(GraphNode<Location,Path> node) 
+	{
+		this.location = node.getVertexData();
+		this.graphNode = node;
+		this.visited = false;
+		this.weight = Double.MAX_VALUE;
+		this.prede = null;
+	}
 }
