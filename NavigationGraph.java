@@ -198,61 +198,63 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	 * @param String edgePropertyName The weights that are used to calculate shortest route
 	 * @return List<Path> Returns a list of vertices that uses the least weight. 
 	 */	
-	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName)
-	{	
-		PriorityQueue<NewGraphNode> pq = new PriorityQueue<NewGraphNode>(
-			new Comparator<NewGraphNode>(){
-			
-				public int compare(NewGraphNode a, NewGraphNode b){
-				if (a.weight > b.weight) 
+	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName) {
+		PriorityQueue<NewGraphNode> pq = new PriorityQueue<NewGraphNode>(new Comparator<NewGraphNode>() {
+			public int compare(NewGraphNode a, NewGraphNode b) {
+				if (a.weight > b.weight)
 					return 1;
 				else if (a.weight == b.weight)
 					return 0;
-				else return -1;
+				else
+					return -1;
 			}
 		});
 		String[] propNames = getEdgePropertyNames();
 		int colNum = 0;
-		for (int i = 0; i < propNames.length;i++)
+		for (int i = 0; i < propNames.length; i++)
 			if (propNames[i].equals(edgePropertyName))
 				colNum = i;
 		ArrayList<NewGraphNode> newNodes = new ArrayList<NewGraphNode>();
-		
-		for (GraphNode<Location,Path> a: nodes)
+
+		for (GraphNode<Location, Path> a : nodes)
 			newNodes.add(new NewGraphNode(a));
+
 		
-		for (NewGraphNode f: pq)
-			if (f.location.equals(src))
+		for (NewGraphNode f : newNodes)
+			if (f.location.equals(src)){
 				f.weight = 0.0;
-		
+				pq.add(f);
+			}
+
 		NewGraphNode curr = null;
-		while (!pq.isEmpty()){
+		while (!pq.isEmpty()) {
 			curr = pq.remove();
 			curr.visited = true;
-			
-			for (NewGraphNode a : newNodes)
-				if (a.visited == false){
-					List<Location> neighbors = getNeighbors(curr.location);
-					for (Location c : neighbors)
-						for (NewGraphNode d : pq)
-							if (c.equals(d.location) && (d.visited == false)){
-								Double sum = 0.0;
-								sum = curr.weight + getEdgeIfExists(curr.location, c).getProperties().get(colNum);
-								if (sum < d.weight){
-									d.prede = curr;	
-									d.weight = sum;
-									if (!pq.contains(d))
-										pq.add(d);
-								}		
-							}
-					
-				}	
+			List<Location> neighbors = getNeighbors(curr.location);
+			List<NewGraphNode> succNode = new ArrayList<NewGraphNode>();
+			for (Location b : neighbors)
+				for (NewGraphNode a : newNodes)
+					if (a.location.equals(b))
+						succNode.add(a);
+
+			for (NewGraphNode d : succNode)
+				if (!(d.visited)) {
+					Double sum = 0.0;
+					sum = curr.weight + getEdgeIfExists(curr.location, d.location).getProperties().get(colNum);
+					if (sum < d.weight) {
+						d.prede = curr;
+						d.weight = sum;
+						if (!pq.contains(d))
+							pq.add(d);
+					}
+				}
+
 		}
-		
+
 		NewGraphNode current = null;
 		ArrayList<Path> path = new ArrayList<Path>();
-		for (int i = 0; i < newNodes.size(); i++){
-			if (newNodes.get(i).location.equals(dest)){
+		for (int i = 0; i < newNodes.size(); i++) {
+			if (newNodes.get(i).location.equals(dest)) {
 				current = newNodes.get(i);
 			}
 		}
@@ -260,11 +262,12 @@ public class NavigationGraph implements GraphADT<Location, Path>
 			path.add(getEdgeIfExists(current.prede.location, current.location));
 			current = current.prede;
 		}
+		ArrayList<Path> path1 = new ArrayList<Path>();
+		for (int i = path.size() - 1; i >= 0;i--)
+			path1.add(path.get(i));
+		return path1;
 		
-		System.out.print(path.toString());
-		return path;
-		
-	}
+}
 	
 	/**
 	 * Returns an String array of the property names of vertices
