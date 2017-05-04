@@ -13,7 +13,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -54,10 +53,10 @@ public class MapApp {
 		} catch (FileNotFoundException e) {
 			System.out.println("GRAPH FILE: " + locationFileName + " was not found.");
 			System.exit(1);
-		} //catch (InvalidFileException e) {
-//			System.out.println(e.getMessage());
-//			System.exit(1);
-//		}
+		} catch (InvalidFileException e) {
+			System.out.println(e.getMessage());
+			System.exit(1);
+		}
 
 	}
 
@@ -187,20 +186,27 @@ public class MapApp {
 	 *             if any property value is not numeric 
 	 */
 
-	public static NavigationGraph createNavigationGraphFromMapFile(String graphFilepath) throws FileNotFoundException{
+	public static NavigationGraph createNavigationGraphFromMapFile(String graphFilepath) throws FileNotFoundException, InvalidFileException{
 			// TODO: read/parse the input file graphFilepath and create
 			// NavigationGraph with vertices and edges
+			if (graphFilepath.equals(" ") || graphFilepath == null)
+				throw new FileNotFoundException();
 			File file = new File(graphFilepath);
 			Scanner in = new Scanner(file);
-			String[] propName = new String[2];
 			int i =0;
 			Scanner scan = new Scanner(in.nextLine());
-			scan.next();
-			scan.next();
-			for (i = 0; i < 2; i++)
-				propName[i] = scan.next();
+			String header = scan.nextLine();
+			String[] headLine = header.split(" ");
+			String[] propName = new String[headLine.length -2];
+			for (i = 2; i < headLine.length; i++)
+				propName[i - 2] = headLine[i];
+			if (headLine.length < 3) {
+				in.close();
+				scan.close();
+				throw new InvalidFileException("The file format is invalid!");
+			}
 			NavigationGraph graph = new NavigationGraph(propName);
-			Location src = null ;
+			Location src = null;
 			Location dest = null;
 			String srcName;
 			String destName;
@@ -245,6 +251,5 @@ public class MapApp {
 			scan.close();
 			return graph;
 	}
-
 
 }
