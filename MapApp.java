@@ -241,21 +241,21 @@ public static NavigationGraph createNavigationGraphFromMapFile(String graphFilep
 				}
 				ArrayList<Double> propList = new ArrayList<Double>();
 				
-					for (int j=0; j < propName.length; j++) {
-						//If an edge does not have enough properties in file or property is not numeric
-						if (!in.hasNextDouble()) {
-							in.close();
-							throw new InvalidFileException("The file format is invalid!");
-						}
-						propList.add(in.nextDouble());
-					}			
-					//If an edge has too many properties in file
-					if (in.hasNextDouble()) {
+				for (int j=0; j < propName.length; j++) {
+					//If an edge does not have enough properties in file or property is not numeric
+					if (!in.hasNextDouble()) {
 						in.close();
 						throw new InvalidFileException("The file format is invalid!");
 					}
-					edge = new Path(src,dest, propList);
-					graph.addEdge(src, dest, edge);
+					propList.add(in.nextDouble());
+				}			
+				//If an edge has too many properties in file
+				if (in.hasNextDouble()) {
+					in.close();
+					throw new InvalidFileException("The file format is invalid!");
+				}
+				edge = new Path(src,dest, propList);
+				graph.addEdge(src, dest, edge);
 			}
 			in.close();
 
