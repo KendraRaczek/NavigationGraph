@@ -297,8 +297,14 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	public String toString() 
 	{
 		String graphString = "";
+		String currName = "";
+		currName = nodes.get(0).getVertexData().getName();
 		for (GraphNode<Location, Path> node : nodes)
 		{
+			if (!node.getVertexData().getName().equals(currName)){
+				graphString += '\n';
+				currName = node.getVertexData().getName();
+			}
 			for (Path edge : node.getOutEdges())
 			{
 				graphString += node.getVertexData() + " ";
@@ -308,10 +314,7 @@ public class NavigationGraph implements GraphADT<Location, Path>
 				}
 				graphString += edge.getDestination() + ", ";
 			}
-			graphString = graphString.substring(0,graphString.length()-2);
-			graphString += '\n';
 		}
-		graphString = graphString.substring(0,graphString.length()-1);
 		graphString = graphString.toLowerCase();
 		return graphString;
 	}
