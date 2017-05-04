@@ -197,12 +197,70 @@ public class NavigationGraph implements GraphADT<Location, Path>
 	 * @return List<Path> Returns a list of vertices that uses the least weight. 
 	 */	
 	public List<Path> getShortestRoute(Location src, Location dest, String edgePropertyName)
-	{
-		if (src.equals(dest)) throw new IllegalArgumentException();
-		if ((src == null) || (dest == null)) throw new IllegalArgumentException();
-		//This method left, this should be able to be found Online
+	{	
+		PriorityQueue<NewGraphNode> pq = new PriorityQueue<NewGraphNode>(
+			new Comparator<NewGraphNode>(){
+			public int compare(NewGraphNode a, NewGraphNode b){
+				if (a.weight > b.weight) 
+					return 1;
+				else if (a.weight == b.weight)
+					return 0;
+				else return -1;
+			}
+		});
+		String[] propNames = getEdgePropertyNames();
+		int colNum = 0;
+		for (int i = 0; i < propNames.length;i++)
+			if (propNames[i].equals(edgePropertyName))
+				colNum = i;
+		ArrayList<NewGraphNode> newNodes = new ArrayList<NewGraphNode>();
 		
-		return null;
+		for (GraphNode<Location,Path> a: nodes)
+			newNodes.add(new NewGraphNode(a));
+		
+		for (NewGraphNode f: pq)
+			if (f.location.equals(src))
+				f.weight = 0.0;
+		
+		NewGraphNode curr = null;
+		while (!pq.isEmpty()){
+			curr = pq.remove();
+			curr.visited = true;
+			
+			for (NewGraphNode a : newNodes)
+				if (a.visited == false){
+					List<Location> neighbors = getNeighbors(curr.location);
+					for (Location c : neighbors)
+						for (NewGraphNode d : pq)
+							if (c.equals(d.location) && (d.visited == false)){
+								Double sum = 0.0;
+								sum = curr.weight + getEdgeIfExists(curr.location, c).getProperties().get(colNum);
+								if (sum < d.weight){
+									d.prede = curr;	
+									d.weight = sum;
+									if (!pq.contains(d))
+										pq.add(d);
+								}		
+							}
+					
+				}	
+		}
+		
+		NewGraphNode current = null;
+		ArrayList<Path> path = new ArrayList<Path>();
+		for (int i = 0; i < newNodes.size(); i++){
+			if (newNodes.get(i).location.equals(dest)){
+				current = newNodes.get(i);
+			}
+		}
+		while (!(current.prede == null)) {
+			path.add(getEdgeIfExists(current.prede.location, current.location));
+			current = current.prede;
+		}
+		
+		System.out.print(path.toString());
+		return path;
+		
 	}
 	
 	/**
@@ -266,21 +324,25 @@ public class NavigationGraph implements GraphADT<Location, Path>
 
 
 	class NewGraphNode {
-	    // now MyClass can create and use instances of WrapperClass as needed.
-		
-		private boolean visited;
-		private double weight;
-		private GraphNode<Location, Path> predecessor;
-		private GraphNode<Location, Path> wrapperNode;
-		
-		private NewGraphNode(GraphNode<Location, Path> wrapperNode) 
-		{
-			this.wrapperNode = wrapperNode;
-			this.visited = false;
-			this.weight = Double.MAX_VALUE;
-			this.predecessor = null;
-		}
-		
-		
+    // now MyClass can create and use instances of WrapperClass as needed.
+	
+	public boolean visited;
+	public double weight;
+	public NewGraphNode prede;
+	public GraphNode<Location,Path> graphNode;
+	public Location location;
+
+	
+	NewGraphNode(GraphNode<Location,Path> node) 
+	{
+		this.location = node.getVertexData();
+		this.graphNode = node;
+		this.visited = false;
+		this.weight = Double.MAX_VALUE;
+		this.prede = null;
 	}
+	
+	
+	
+	
 }
