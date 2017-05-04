@@ -207,7 +207,9 @@ public class MapApp {
 			while (in.hasNextLine()){
 				boolean t = true;
 				srcName = in.next();
+				srcName = srcName.toLowerCase();
 				destName = in.next();
+				destName = destName.toLowerCase();
 				// Finds the vertices
 				for (GraphNode<Location, Path> a: graph.nodes)
 					if (a.getVertexData().getName().equals(srcName)){
