@@ -34,8 +34,8 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	 *
 	 * @param String[] edgePropertyNames This initializes the ArrayList
 	 */
-	public NavigationGraph(String[] edgePropertyNames) 
-	{
+	public NavigationGraph(String[] edgePropertyNames) {
+		
 		if (edgePropertyNames == null) throw new IllegalArgumentException();
 		this.nodes = new ArrayList<GraphNode<Location, Path>>(); // Initializes ArrayList
 		this.numVertices = 0;
@@ -49,8 +49,8 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	 * @param Location vertex This is the vertex that we are adding to the linked list
 	 * @return void 
 	 */	
-	public void addVertex(Location vertex) 
-	{	
+	public void addVertex(Location vertex) {	
+		
 		if (vertex == null) throw new IllegalArgumentException();
 		GraphNode<Location, Path> nodeToAdd = new GraphNode<Location, Path>(vertex, id);
 		nodes.add(nodeToAdd);
@@ -67,27 +67,18 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	 * @param Path edge //This is the Path of the edge
 	 * @return void 
 	 */	
-	public void addEdge(Location src, Location dest, Path edge)
-	{
+	public void addEdge(Location src, Location dest, Path edge) {
+		
 		if (src == null) throw new IllegalArgumentException();
 		if (dest == null) throw new IllegalArgumentException();
 		
 		// search through Graph's list
 		GraphNode<Location, Path> srcNode = null;
-//		GraphNode<Location, Path> destNode = null;
-		for (GraphNode<Location, Path> node : nodes) 
-		{
-			if ( node.getVertexData().equals(src)) 
-			{
+		for (GraphNode<Location, Path> node : nodes) {
+			if ( node.getVertexData().equals(src)) {
 				srcNode = node;
 			}
 		}
-//			if ( node.getVertexData().equals(dest))
-//			{
-//				destNode = node;
-//			}
-//		}
-
 		if (edge.getDestination().equals(dest) && edge.getSource().equals(src))
 			srcNode.addOutEdge(edge);
 	}
@@ -98,12 +89,11 @@ public class NavigationGraph implements GraphADT<Location, Path> {
    	  *
   	   * @return list, the ArrayList containing the vertices
    	  */
-	public List<Location> getVertices() 
-	{
+	public List<Location> getVertices() {
+		
 		// list of Locations rather than GraphNodes
 		ArrayList<Location> list = new ArrayList<Location>();
-		for (GraphNode<Location, Path> node : nodes) 
-		{
+		for (GraphNode<Location, Path> node : nodes) {
 				list.add(node.getVertexData());
 		}
 		return list;
@@ -116,24 +106,20 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	 * @param Location dest The last node that is being checked
 	 * @return Path A list of all locations
 	 */	
-	public Path getEdgeIfExists(Location src, Location dest) 
-	{
+	public Path getEdgeIfExists(Location src, Location dest) {
+		
 		if (src == null || dest == null) throw new IllegalArgumentException();
 		GraphNode<Location, Path> srcNode = null;
 		//Finds the correct node
-		for (GraphNode<Location, Path> node : nodes)
-		{
-			if ( node.getVertexData().equals(src)) 
-			{
+		for (GraphNode<Location, Path> node : nodes) {
+			if ( node.getVertexData().equals(src)) {
 				srcNode = node;
 			}
 		}
 		if (srcNode == null) throw new IllegalArgumentException();		
 		
-		for (Path edge : srcNode.getOutEdges()) 
-		{
-			if ( edge.getDestination().equals(dest))
-			{
+		for (Path edge : srcNode.getOutEdges()) {
+			if ( edge.getDestination().equals(dest)) {
 				//Returns correct edge
 				return edge;
 			}
@@ -147,8 +133,8 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	 * @param Location src The first node that the edges are coming out of
 	 * @return List<Path> A list of all edges coming out
 	 */	
-	public List<Path> getOutEdges(Location src) 
-	{
+	public List<Path> getOutEdges(Location src) {
+		
 		if (src == null) throw new IllegalArgumentException();
 		GraphNode<Location, Path> srcNode = null;
 		//Finds correct node
@@ -170,17 +156,15 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	 * @param Location vertex The first node that the neighbors are calculated
 	 * @return List<Location> A list of all neighbors
 	 **/
-	public List<Location> getNeighbors(Location vertex)
-	{
+	public List<Location> getNeighbors(Location vertex) {
+		
 		if (vertex == null) throw new IllegalArgumentException();
         List<Location> neighbors = new ArrayList<Location>();
         List<Path> path = new ArrayList<Path>();
 		//Finds correct node
 		GraphNode<Location, Path> mainNode = null;
-		for (GraphNode<Location, Path> node : nodes) 
-		{
-			if ( node.getVertexData().equals(vertex)) 
-			{
+		for (GraphNode<Location, Path> node : nodes) {
+			if ( node.getVertexData().equals(vertex)) {
 				mainNode = node;
 			}
 		}
@@ -253,8 +237,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 							pq.add(d);
 					}
 				}
-
-		}
+			}
 
 		NewGraphNode current = null;
 		ArrayList<Path> path = new ArrayList<Path>();
@@ -271,7 +254,6 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		for (int i = path.size() - 1; i >= 0;i--)
 			path1.add(path.get(i));
 		return path1;
-		
 	}
 	
 	/**
@@ -307,7 +289,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		for (GraphNode<Location, Path> node : nodes)
 		{
 			if (!node.getVertexData().getName().equals(currName)){
-				// accounts for removing last comma
+				// accounts for removing last commas
 				graphString = graphString.substring(0,graphString.length()-2);
 				graphString += '\n';
 				currName = node.getVertexData().getName();
@@ -322,6 +304,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 				graphString += edge.getDestination() + ", ";
 			}
 		}
+		// removes final comma
 		graphString = graphString.substring(0,graphString.length()-2);
 		graphString = graphString.toLowerCase();
 		return graphString;
@@ -335,21 +318,20 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	 * @return Location object
 	 */
 	public Location getLocationByName(String name) {
+		
 		for (GraphNode<Location, Path> node : nodes)
 			if (node.getVertexData().getName().equals(name))
 				return node.getVertexData();
 		return null;
-		
 	}
 }
 
 /**
- * Allows now MyClass can create and use instances of WrapperClass as needed.
+ * Wrapper class for GraphNode that holds additional information used in getShortestPath.
  *
  * @author  Harry
  */
 class NewGraphNode {
-    // now MyClass can create and use instances of WrapperClass as needed.
 	
 	public boolean visited;
 	public double weight;
@@ -362,16 +344,12 @@ class NewGraphNode {
 	 *
 	 * @param GraphNode<Location,Path> node allows to update the location
 	 */	
-	NewGraphNode(GraphNode<Location,Path> node) 
-	{
+	NewGraphNode(GraphNode<Location,Path> node) {
+		
 		this.location = node.getVertexData();
 		this.graphNode = node;
 		this.visited = false;
 		this.weight = Double.MAX_VALUE;
 		this.prede = null;
 	}
-	
-	
-	
-	
 }
