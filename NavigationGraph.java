@@ -307,10 +307,11 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 		for (GraphNode<Location, Path> node : nodes)
 		{
 			if (!node.getVertexData().getName().equals(currName)){
+				// accounts for removing last comma
+				graphString = graphString.substring(0,graphString.length()-2);
 				graphString += '\n';
 				currName = node.getVertexData().getName();
 			}
-			// accounts for removing last comma
 			for (Path edge : node.getOutEdges())
 			{
 				graphString += node.getVertexData() + " ";
@@ -321,6 +322,7 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 				graphString += edge.getDestination() + ", ";
 			}
 		}
+		graphString = graphString.substring(0,graphString.length()-2);
 		graphString = graphString.toLowerCase();
 		return graphString;
 	}
