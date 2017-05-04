@@ -11,7 +11,9 @@
 //////////////////////////// 80 columns wide //////////////////////////////////
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * A class that allows the code to use information from graphNodes and vertices 
