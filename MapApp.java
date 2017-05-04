@@ -187,13 +187,14 @@ public class MapApp {
 	 */
 
 	public static NavigationGraph createNavigationGraphFromMapFile(String graphFilepath) throws FileNotFoundException, InvalidFileException{
-			// TODO: read/parse the input file graphFilepath and create
 			// NavigationGraph with vertices and edges
 			if (graphFilepath.equals(" ") || graphFilepath == null)
 				throw new FileNotFoundException();
 			File file = new File(graphFilepath);
+			//Scans in file
 			Scanner in = new Scanner(file);
 			int i =0;
+			//Scans correct information into variables
 			Scanner scan = new Scanner(in.nextLine());
 			String header = scan.nextLine();
 			String[] headLine = header.split(" ");
@@ -203,6 +204,7 @@ public class MapApp {
 			if (headLine.length < 3) {
 				in.close();
 				scan.close();
+				//Ensures correct file format
 				throw new InvalidFileException("The file format is invalid!");
 			}
 			NavigationGraph graph = new NavigationGraph(propName);
@@ -213,6 +215,7 @@ public class MapApp {
 			Path edge;
 			boolean t;
 			String line;
+			//Scans all information
 			while (in.hasNextLine()){
 				t = true;
 				line = in.nextLine();
@@ -229,6 +232,7 @@ public class MapApp {
 					}
 				if (t){
 					src = new Location(srcName);
+					//Transfers to graph
 					graph.addVertex(src);
 				}
 				t = true;
@@ -241,6 +245,7 @@ public class MapApp {
 					dest = new Location(destName);
 					graph.addVertex(dest);
 				}
+				//Scans information to a graph
 				ArrayList<Double> propList = new ArrayList<Double>();
 				propList.add(scan.nextDouble());
 				propList.add(scan.nextDouble());
@@ -248,7 +253,9 @@ public class MapApp {
 				graph.addEdge(src, dest, edge);
 			}
 			in.close();
+			//Closes file
 			scan.close();
+			//Returns necessary graph
 			return graph;
 	}
 
