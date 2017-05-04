@@ -186,25 +186,23 @@ public class MapApp {
 	 *             if any property value is not numeric 
 	 */
 
-	public static NavigationGraph createNavigationGraphFromMapFile(String graphFilepath) throws FileNotFoundException, InvalidFileException{
+public static NavigationGraph createNavigationGraphFromMapFile(String graphFilepath) throws FileNotFoundException, InvalidFileException{
+			// TODO: read/parse the input file graphFilepath and create
 			// NavigationGraph with vertices and edges
 			if (graphFilepath.equals(" ") || graphFilepath == null)
 				throw new FileNotFoundException();
 			File file = new File(graphFilepath);
-			//Scans in file
 			Scanner in = new Scanner(file);
 			int i =0;
-			//Scans correct information into variables
-			Scanner scan = new Scanner(in.nextLine());
-			String header = scan.nextLine();
+
+			String header = in.nextLine();
 			String[] headLine = header.split(" ");
 			String[] propName = new String[headLine.length -2];
 			for (i = 2; i < headLine.length; i++)
 				propName[i - 2] = headLine[i];
 			if (headLine.length < 3) {
 				in.close();
-				scan.close();
-				//Ensures correct file format
+
 				throw new InvalidFileException("The file format is invalid!");
 			}
 			NavigationGraph graph = new NavigationGraph(propName);
@@ -214,15 +212,13 @@ public class MapApp {
 			String destName;
 			Path edge;
 			boolean t;
-			String line;
-			//Scans all information
+
 			while (in.hasNextLine()){
 				t = true;
-				line = in.nextLine();
-				scan = new Scanner(line);
-				srcName = scan.next();
+
+				srcName = in.next();
 				srcName = srcName.toLowerCase();
-				destName = scan.next();
+				destName = in.next();
 				destName = destName.toLowerCase();
 
 				for (GraphNode<Location, Path> a: graph.nodes)
@@ -230,9 +226,8 @@ public class MapApp {
 						t = false;
 						src = graph.getLocationByName(srcName);
 					}
-				if (t) {
+				if (t){
 					src = new Location(srcName);
-					//Transfers to graph
 					graph.addVertex(src);
 				}
 				t = true;
@@ -241,29 +236,18 @@ public class MapApp {
 						t = false;
 						dest = graph.getLocationByName(destName);
 					}
-				if (t) {
+				if (t){
 					dest = new Location(destName);
 					graph.addVertex(dest);
 				}
-				//Scans information to a graph
 				ArrayList<Double> propList = new ArrayList<Double>();
-				
-				for (int j=0; j < propName.length; j++) {
-					//If an edge does not have enough properties in file or property is not numeric
-					if (!scan.hasNextDouble()) throw new InvalidFileException("The file format is invalid!");
-					propList.add(scan.nextDouble());	
-				}
-				
-				//If an edge has too many properties in file
-				if (scan.hasNextDouble()) throw new InvalidFileException("The file format is invalid!");
-				
+				propList.add(in.nextDouble());
+				propList.add(in.nextDouble());
 				edge = new Path(src,dest, propList);
 				graph.addEdge(src, dest, edge);
 			}
 			in.close();
-			//Closes file
-			scan.close();
-			//Returns necessary graph
+
 			return graph;
 	}
 
