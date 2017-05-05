@@ -186,7 +186,9 @@ public class MapApp {
 	 *             if any property value is not numeric 
 	 */
 
-public static NavigationGraph createNavigationGraphFromMapFile(String graphFilepath) throws FileNotFoundException, InvalidFileException {
+	public static NavigationGraph createNavigationGraphFromMapFile(String graphFilepath) 
+		throws FileNotFoundException, InvalidFileException {
+		
 			// NavigationGraph with vertices and edges
 			if (graphFilepath.equals(" ") || graphFilepath == null)
 				throw new FileNotFoundException();
