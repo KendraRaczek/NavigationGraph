@@ -85,9 +85,9 @@ public class NavigationGraph implements GraphADT<Location, Path> {
 	
 	/**
    	  * This method traverses the graph for all of the vertices (nodes),
-  	   * adds them to an ArrayList, and returns the ArrayList.
+  	  * adds them to an ArrayList, and returns the ArrayList.
    	  *
-  	   * @return list, the ArrayList containing the vertices
+  	  * @return list, the ArrayList containing the vertices
    	  */
 	public List<Location> getVertices() {
 		
